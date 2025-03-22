@@ -19,6 +19,7 @@ let arr = [{
 let content = document.querySelector(".story-sec");
 let card = document.getElementById("photo-card");
 let heart = document.querySelector("i");
+let toggleIcon =document.getElementById("icontwo")
 
 // tasks-- creating dp for story in js
 // so we pushes elements in content where depending on no. of arr the img and other property would be avail
@@ -33,6 +34,11 @@ arr.forEach((val,indx) => {
 // after three sec story disappears
 // and gradient background color disappers too
 content.addEventListener("click", function(dets){
+    if (dets.target.tagName === "IMG") { 
+        let clickedStory = dets.target.parentElement; 
+        clickedStory.style.background = "#3b3b3b";
+    }
+
     var insideStory = document.querySelector(".full-screen")
     insideStory.style.display = "block"
     insideStory.style.backgroundImage = `url(${arr[dets.target.id].story})`
@@ -43,6 +49,7 @@ content.addEventListener("click", function(dets){
         card.style.display = "block"
         
     }, 2000);
+
 })
 
 card.addEventListener("dblclick", function(){
@@ -54,4 +61,12 @@ card.addEventListener("dblclick", function(){
         heart.style.transform = "translate(-50%, -50%) scale(0)",
         heart.style.color = "white"
     }, 2000);
+    // toggleIcon.classList.replace("ri-heart-line", "ri-heart-fill");
+    likeBtn()
+
 })
+function likeBtn(){
+    toggleIcon.classList.replace("ri-heart-line", "ri-heart-fill");
+    toggleIcon.addEventListener("click", function(){
+        toggleIcon.classList.replace("ri-heart-fill", "ri-heart-line");    })
+}
